@@ -1,0 +1,117 @@
+[2014-11-05 11:15:35] 127.0.0.1 /index.php/File/index
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.002904s ]
+INFO: [ route_check ] --END-- [ RunTime:0.004056s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.003019s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004165s ]
+NOTIC: 建议使用I方法替代_param
+SQL: SHOW COLUMNS FROM `file` [ RunTime:0.060184s ]
+SQL: SHOW COLUMNS FROM `tag` [ RunTime:0.021337s ]
+SQL: SELECT * FROM `tag` WHERE ( `type` = 'inner' )  [ RunTime:0.000831s ]
+SQL: SELECT * FROM `tag` WHERE ( `type` = 'normal' )  [ RunTime:0.000719s ]
+
+[2014-11-05 11:21:51] 127.0.0.1 /index.php/File/getFileList
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.002418s ]
+INFO: [ route_check ] --END-- [ RunTime:0.003562s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.003124s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005653s ]
+NOTIC: 建议使用I方法替代_param
+SQL: SHOW COLUMNS FROM `file` [ RunTime:0.012729s ]
+
+[2014-11-05 11:22:05] 127.0.0.1 /index.php/File/getFileList
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.002171s ]
+INFO: [ route_check ] --END-- [ RunTime:0.003421s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.002282s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003370s ]
+NOTIC: 建议使用I方法替代_param
+SQL: SHOW COLUMNS FROM `file` [ RunTime:0.019905s ]
+
+[2014-11-05 11:22:20] 127.0.0.1 /index.php/File/getFileList
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.002138s ]
+INFO: [ route_check ] --END-- [ RunTime:0.004338s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.002484s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003995s ]
+NOTIC: 建议使用I方法替代_param
+SQL: SHOW COLUMNS FROM `file` [ RunTime:0.003706s ]
+SQL: SELECT 
+                        f.id as file_id, 
+                        f.show_name as show_name,
+                        f.md5 as md5,
+                        f.ext as ext,
+                        f.insert_date as insert_date,
+                        group_concat(t.id) as tag_all_id,
+                        group_concat(t.name) as tag_all_name
+                    from 
+                        rel as r, tag as t, file as f
+                    where 
+                        r.file_id=f.id and 
+                        r.tag_id=t.id and
+                        f.id in
+                            (select f.id from file as f,rel as r where f.id=r.file_id and r.tag_id in (14))
+                    group by f.id
+                    order by f.sort
+                     [ RunTime:0.218783s ]
+
+[2014-11-05 11:22:21] 127.0.0.1 /index.php/File/getFileList
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.003209s ]
+INFO: [ route_check ] --END-- [ RunTime:0.004495s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.002507s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003685s ]
+NOTIC: 建议使用I方法替代_param
+SQL: SHOW COLUMNS FROM `file` [ RunTime:0.014614s ]
+SQL: SELECT 
+                        f.id as file_id, 
+                        f.show_name as show_name,
+                        f.md5 as md5,
+                        f.ext as ext,
+                        f.insert_date as insert_date,
+                        group_concat(t.id) as tag_all_id,
+                        group_concat(t.name) as tag_all_name
+                    from 
+                        rel as r, tag as t, file as f
+                    where 
+                        r.file_id=f.id and 
+                        r.tag_id=t.id and
+                        f.id in
+                            (select f.id from file as f,rel as r where f.id=r.file_id and r.tag_id in (14))
+                    group by f.id
+                    order by f.sort
+                     [ RunTime:0.197880s ]
+
+[2014-11-05 11:22:27] 127.0.0.1 /index.php/File/getFileList
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.002218s ]
+INFO: [ route_check ] --END-- [ RunTime:0.003360s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.002966s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004167s ]
+NOTIC: 建议使用I方法替代_param
+SQL: SHOW COLUMNS FROM `file` [ RunTime:0.032869s ]
+SQL: SELECT 
+                        f.id as file_id, 
+                        f.show_name as show_name,
+                        f.md5 as md5,
+                        f.ext as ext,
+                        f.insert_date as insert_date,
+                        group_concat(t.id) as tag_all_id,
+                        group_concat(t.name) as tag_all_name
+                    from 
+                        rel as r, tag as t, file as f
+                    where 
+                        r.file_id=f.id and 
+                        r.tag_id=t.id and
+                        f.id in
+                            (select f.id from file as f,rel as r where f.id=r.file_id and r.tag_id in (1))
+                    group by f.id
+                    order by f.sort
+                     [ RunTime:0.169634s ]
+

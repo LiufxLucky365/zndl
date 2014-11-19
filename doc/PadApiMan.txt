@@ -1,0 +1,108 @@
+# pad使用api接口使用说明文档
+
+0. 全局说明
+0.1 交互方式: http post请求
+0.2 域名: 主机ip，以下省略
+0.3 发送中均带token参数: WVdOMGJIcHVaR3clM0Q, 下不赘述
+0.4 数据格式: 
+        json
+            data: 返回数据
+            status: 0表示成功，1表示失败
+            info: 返回信息
+        失败时均返回
+            data: null
+            status: 0
+            info: 错误信息
+
+1. 获取设备与标签信息列表
+接口: /index.php/File/index
+参数: null
+返回: 
+    {
+        data: {
+            deviceList: [
+                {
+                    id: 设备id
+                    name: 设备名称, eg: TV_1, TV_2, QX_1, HM_1等
+                    type: 设备类型, eg: inner内置, normal普通
+                    class: 设备分类, eg: tv hm qx 或 空
+                }
+            ]
+            tagList: {
+                同上
+            }
+        },
+        info: 'succ',
+        status: 1
+    }
+
+2. 检索文件列表
+接口: /index.php/File/getFileList
+参数: 
+    {
+        deviceIdList: 设备id列表, 'or'关系, 将会列出所有id下的文件
+        tagIdList: 过滤标签id列表, 'and'关系, 将对上面列出的文件进行过滤, 只通过具有所有标签的文件
+    }
+返回:
+    {
+        data: {
+            [
+                {
+                    file_id: 文件id
+                    show_name: 文件的显示名字, eg: animal_1.jpg
+                    md5: 文件的真实存储名字, eg: 8ebbd1159bdeda4491c90181e5617c66.jpg
+                    ext: 文件拓展名, eg: jpg
+                    insert_date: 文件创建日期, eg: 2014-10-13 19:47:09
+                    tag_list: { 
+                        // 文件所具备的标签数组: 属性为标签id, 值为标签名称, eg:
+                        2: "TV_2",
+                        28: "animal",
+                    }
+                }
+                ...
+            ]
+        },
+        info: 'succ',
+        status: 1
+    }
+
+3. 立刻播放1: 指定设备立刻播放指定文件
+接口: /index.php/File/setPlayList
+参数:
+    {
+        fidList: []         // 要播放的文件列表, id的顺序决定播放的顺序
+        deviceIdList: []    // 目标设备id列表
+    }
+返回:
+    {
+        data: true,
+        info: 'succ',
+        status: 1
+    }
+
+4. 立刻播放2: 所有设备均播放其下指定主题(也就是标签)的文件
+接口: /index.php/PadApi/setThemeList
+参数: 
+    {
+        themeId: 主题id, 也即标签id
+    }
+返回:
+    {
+        data: true,
+        info: 'succ', 
+        status: 1
+    }
+
+5. 环幕/全息设备插播
+接口: /index.php/PadApi/insertFile
+参数:
+    {
+        fid: 文件id
+        type: 'hm'/'qx'  操作类型，环幕或者全息
+    }
+返回:
+    {
+        data: true,
+        info: 'succ', 
+        status: 1
+    }

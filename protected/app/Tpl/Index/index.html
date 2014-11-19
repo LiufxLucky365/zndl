@@ -1,0 +1,57 @@
+<extend name="Base/index" />
+
+<block name="body">
+    <div class="panel panel-default" style="margin-top: 10px;">
+        <div class="my-panel-title">设置文件所属设备与标签分类</div>
+        <div class="panel-body">
+
+            <div class="col-xs-12">
+                <a href="javascript:void(0);" class="set-tag-select-all" data-ctrl-id="device-set">全选</a>
+                <a href="javascript:void(0);" class="set-tag-select-other" data-ctrl-id="device-set">反选</a>
+                <a href="javascript:void(0);" class="set-tag-select-none" data-ctrl-id="device-set">全不选</a>
+            </div>
+
+            <div class="col-xs-12" id="device-set">
+                <foreach name="tagInnerList" item="tag">
+                    <span class="set-tag" data-tag-id="{$tag.id}">{$tag.name}</span>
+                </foreach>
+            </div>
+
+            <div class="col-xs-12">
+                <hr />
+                <a href="javascript:void(0);" class="set-tag-select-all" data-ctrl-id="tag-set">全选</a>
+                <a href="javascript:void(0);" class="set-tag-select-other" data-ctrl-id="tag-set">反选</a>
+                <a href="javascript:void(0);" class="set-tag-select-none" data-ctrl-id="tag-set">全不选</a>
+                |
+                <a href="javascript:void(0);" id="add-tag">添加标签</a>
+            </div>
+
+            <div class="col-xs-12" id="tag-set">
+                <foreach name="tagNormalList" item="tag">
+                    <span class="set-tag" data-tag-id="{$tag.id}">{$tag.name}</span>
+                </foreach>
+            </div>
+
+            <div class="col-xs-12">
+                <hr />
+                <button href="javascript:void(0)" id="submit" class="button my-btn-primary">提交</button>
+                <input type="file" name="file" id="file_upload" />
+            </div>
+
+            <div class="col-xs-12">
+                <div class="well well-sm">
+                    <ul id="upload-result">
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</block>
+
+<block name="script">
+    <script src="__LIB__/uploadify/jquery.uploadify.min.js"></script>
+</block>

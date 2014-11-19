@@ -1,0 +1,161 @@
+<extend name="Base/index" />
+
+<block name="body">
+    <!-- 文件检索 -->
+    <div class="panel panel-default" style="margin-top: 10px;">
+        <div class="my-panel-title">文件检索</div>
+        <div class="panel-body">
+
+            <div class="col-xs-12">
+                <a href="javascript:void(0);" class="set-tag-select-all" data-ctrl-id="device-search" data-callback="1">全选</a>
+                <a href="javascript:void(0);" class="set-tag-select-other" data-ctrl-id="device-search" data-callback="1">反选</a>
+                <a href="javascript:void(0);" class="set-tag-select-none" data-ctrl-id="device-search" data-callback="1">全不选</a>
+            </div>
+
+            <div class="col-xs-12" id="device-search">
+                <foreach name="tagInnerList" item="tag">
+                    <span class="set-tag" data-tag-id="{$tag.id}" data-callback='1'>{$tag.name}</span>
+                </foreach>
+            </div>
+
+            <div class="col-xs-12">
+                <hr />
+                <a href="javascript:void(0);" class="set-tag-select-all" data-ctrl-id="tag-search" data-callback="1">全选</a>
+                <a href="javascript:void(0);" class="set-tag-select-other" data-ctrl-id="tag-search" data-callback="1">反选</a>
+                <a href="javascript:void(0);" class="set-tag-select-none" data-ctrl-id="tag-search" data-callback="1">全不选</a>
+            </div>
+
+            <div class="col-xs-12" id="tag-search">
+                <foreach name="tagNormalList" item="tag">
+                    <span class="set-tag" data-tag-id="{$tag.id}" data-callback='1'>{$tag.name}</span>
+                </foreach>
+            </div>
+        </div>
+    </div>
+
+    <include file="File:fileList" />
+
+    <!-- 设备选择 -->
+    <div class="panel panel-default">
+        <div class="my-panel-title">更新设备（包括TV、全息、环幕）播放列表</div>
+        <div class="panel-body">
+
+            <div class="col-xs-12">
+                <a href="javascript:void(0);" class="set-tag-select-all" data-ctrl-id="device-des">全选</a>
+                <a href="javascript:void(0);" class="set-tag-select-other" data-ctrl-id="device-des">反选</a>
+                <a href="javascript:void(0);" class="set-tag-select-none" data-ctrl-id="device-des">全不选</a>
+            </div>
+
+            <div class="col-xs-12" id="device-des">
+                <foreach name="tagInnerList" item="tag">
+                    <span class="set-tag" data-tag-id="{$tag.id}">{$tag.name}</span>
+                </foreach>
+            </div>
+
+            <div class="col-xs-12">
+                <hr />
+                <button class="button my-btn-primary set-list" data-type="welcome">设置TV欢迎列表</button>
+                <button class="button my-btn-primary set-list" data-type="default" style="margin-left: 20px;">设置TV默认列表</button>
+                <button class="button my-btn-primary set-list" data-type="update" style="margin-left: 20px;">设置播放列表</button>
+                <button class="button my-btn-primary set-num-list" data-toggle="modal" data-target="#modal" style="margin-left: 20px;">设置TV播放时间参数</button>
+                <button class="button my-btn-primary set-list" data-type="temp" style="margin-left: 20px;">立刻播放</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 快捷操作 -->
+    <div class="panel panel-default">
+        <div class="my-panel-title">按主题设置TV播放列表</div>
+        <div class="panel-body">
+
+            <div class="col-xs-12" id="theme-des">
+                <foreach name="tagNormalList" item="tag">
+                    <span class="set-tag" data-tag-id="{$tag.id}">{$tag.name}</span>
+                </foreach>
+            </div>
+
+            <div class="col-xs-12">
+                <hr />
+                <button class="button my-btn-primary set-list-by-theme" data-type="welcome">设置TV欢迎列表</button>
+                <button class="button my-btn-primary set-list-by-theme" data-type="default" style="margin-left: 20px;">设置TV默认列表</button>
+                <button class="button my-btn-primary set-list-by-theme" data-type="update" style="margin-left: 20px;">设置TV播放列表</button>
+                <button class="button my-btn-primary set-list-by-theme" data-type="temp" style="margin-left: 20px;">立刻播放</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">自动播放时间（秒）</label>
+                        <input type="email" class="form-control" id="set-autoPlayTime">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">手动到自动切换时间（秒）</label>
+                        <input type="email" class="form-control" id="set-manuToAutoTime" value="300">
+                    </div>
+                    
+                    <button id="set-num-submit" type="button" class="btn btn-primary">确定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-file-sort" tabindex="-1">
+        <div class="modal-dialog" style="width: 800px;">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" id="mv-up" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-arrow-up"></span> 上移
+                    </button>
+                    <button type="button" id="mv-down" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-arrow-down"></span> 下移
+                    </button>
+                    <span class="help-block">你可以微调播放列表的顺序（按着ctrl可以批量选择）</span>
+
+                    <div class="panel panel-default" style="margin: 10px 0;">
+                        <div class="panel-body" style="max-height: 300px; overflow-y: scroll; overflow-x: auto;">
+                            <table class="table table-hover table-condensed">
+                            </table>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn my-btn-primary" id="set-list-submit">确定</button>
+                    <button type="button" class="btn my-btn-primary" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <div class="modal fade" id="modal-file-update-tag" tabindex="-1">
+        <div class="modal-dialog" style="width: 800px;">
+            <div class="modal-content">
+                <div class="modal-body row">
+
+                    <div class="col-xs-12">
+                        <a href="javascript:void(0);" class="set-tag-select-all" data-ctrl-id="file-update-tag" style="margin-left: 10px;">全选</a>
+                        <a href="javascript:void(0);" class="set-tag-select-other" data-ctrl-id="file-update-tag">反选</a>
+                        <a href="javascript:void(0);" class="set-tag-select-none" data-ctrl-id="file-update-tag">全不选</a>
+                    </div>
+
+                    <div class="col-xs-12" id="file-update-tag">
+                        <foreach name="tagNormalList" item="tag">
+                            <span class="set-tag" data-tag-id="{$tag.id}">{$tag.name}</span>
+                        </foreach>
+                    </div>
+
+                    <div class="col-xs-12" id="file-update-tag" style="margin-top: 10px; padding-left: 25px;">
+                        <button type="button" class="btn my-btn-primary" id="update-file-tag-submit">确定</button>
+                        <button type="button" class="btn my-btn-primary" data-dismiss="modal">取消</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div> 
+</block>
