@@ -1,0 +1,17 @@
+<div class="col-xs-12">
+    <div class="page-header">
+        <h1>中南电力展厅控制系统<small>后台管理</small></h1>
+
+        <ul class="nav nav-pills" role="tablist">
+            <li role="presentation" <if condition="$menu_active eq 'Index/index'">class="active"</if>><a href="/index.php/Index">文件上传</a></li>
+            <li role="presentation" <if condition="$menu_active eq 'File/index'">class="active"</if>><a href="/index.php/File/index/fetch/1">文件列表</a></li>
+            <li role="presentation" <if condition="$menu_active eq 'Tag/index'">class="active"</if>><a href="/index.php/Tag">标签管理</a></li>
+            <li role="presentation" <if condition="$menu_active eq 'File/sortIndex'">class="active"</if>><a href="/index.php/File/sortIndex">文件默认顺序管理</a></li>
+            <li role="presentation" <if condition="$menu_active eq 'User/index'">class="active"</if>><a href="/index.php/User">账号管理</a></li>
+
+        <if condition="$Think.session.role eq 'admin'">
+            <li role="presentation" <if condition="$menu_active eq 'User/adminIndex'">class="active"</if>><a href="/index.php/User/adminIndex">用户管理</a></li>
+        </if>
+        </ul>
+    </div>
+</div>

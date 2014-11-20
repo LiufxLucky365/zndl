@@ -1,0 +1,44 @@
+<extend name="Base/index" />
+
+<block name="body">
+    <div class="col-xs-6">
+        <form id="alter-user-pwd">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table>
+                        <tr style="height: 40px;">
+                            <td align="right">用户名：</td>
+                            <td width="300">
+                                <input class="form-control" type="text" name="uname">
+                            </td>
+                        </tr>
+                        <tr style="height: 40px;">
+                            <td align="right">原密码：</td>
+                            <td>
+                                <input class="form-control" type="password" name="oldPwd">
+                            </td>
+                        </tr>
+                        <tr style="height: 40px;">
+                            <td align="right">新密码：</td>
+                            <td>
+                                <input class="form-control" type="password" name="newPwd">
+                            </td>
+                        </tr>
+                        <tr style="height: 40px;">
+                            <td align="right">新密码确认：</td>
+                            <td>
+                                <input class="form-control" type="password" name="confirmPwd">
+                            </td>
+                        </tr>
+                        <tr style="height: 60px;">
+                            <td align="right"></td>
+                            <td>
+                                <button class="my-btn-primary" id="submit">提交</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</block>
