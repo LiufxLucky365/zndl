@@ -1,9 +1,0 @@
-[2014-11-04 20:36:40] 127.0.0.1 /index.php/PadApi/insertFile
-INFO: [ route_check ] --START--
-INFO: CheckRoute Behavior ::run [ RunTime:0.139181s ]
-INFO: [ route_check ] --END-- [ RunTime:0.295542s ]
-INFO: [ app_begin ] --START--
-INFO: ReadHtmlCache Behavior ::run [ RunTime:0.325122s ]
-INFO: [ app_begin ] --END-- [ RunTime:0.327284s ]
-NOTIC: 建议使用I方法替代_param
-
